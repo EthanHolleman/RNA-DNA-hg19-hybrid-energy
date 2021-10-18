@@ -1,0 +1,6 @@
+.snakemake/
+output/
+*.bed
+*.fasta
+*.fa
+.vscode
