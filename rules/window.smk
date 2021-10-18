@@ -3,7 +3,7 @@ rule download_chrom_sizes:
     output:
         'output/hg19/hg19.chrom.sizes'
     params:
-        url='http://hgdownload.cse.ucsc.edu/goldenpath/hg19/bigZips/hg19.chrom.sizes'
+        url='http://hgdownload.cse.ucsc.edu/goldenpath/hg19/bigZips/hg19.chrom.sizes',
         output_dir='output/hg19/'
     shell:'''
     mkdir -p {params.output_dir}
@@ -28,7 +28,7 @@ rule split_windows_by_chrom:
     output:
         dynamic('output/windows/chroms/{chrom_name}.bed')
     params:
-        out_dir='output/windows/chroms/
+        out_dir='output/windows/chroms/'
     shell:'''
     mkdir -p {params.out_dir}
     awk '{{close(f);f=$1}}{{print > "{params.out_dir}"f".bed"}}'
