@@ -4,3 +4,5 @@ output/
 *.fasta
 *.fa
 .vscode
+*.out
+logs/
