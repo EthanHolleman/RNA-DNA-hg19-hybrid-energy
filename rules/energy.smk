@@ -6,13 +6,22 @@ rule fasta2energy:
         energy_dict=ENERGY_DICT_PATH,
         fasta='output/hg19/hg19/chroms/{chrom_name}.fa'
     output:
-        'output/hybridEnergy/{chrom_name}.bed'
+        temp('output/hybridEnergy/{chrom_name}.bed')
     script:'../scripts/fastaToEnergy.py'
+
+rule remove_N_rows:
+    input:
+        'output/hybridEnergy/{chrom_name}.bed'
+    output:
+        'output/clean/{chrom_name}.clean.bed'
+    shell:'''
+    awk '!/-1/' {input} > {output}
+    '''
 
 
 rule compressEnergyBed:
     input:
-        'output/hybridEnergy/{chrom_name}.bed'
+        'output/clean/{chrom_name}.clean.bed'
     output:
         'output/hybridEnergy/{chrom_name}.bed.gz'
     shell:'''

@@ -42,7 +42,7 @@ rule map_windows:
     output:
         'output/map/{chrom_bed}.mapped.windows.bed'
     shell:'''
-    bedtools map -a {input.windows} -b {input.energy} -c 6 -o mean > {output}
+    bedtools map -a {input.windows} -b {input.energy} -c 5 -o mean > {output}
     '''
 
 
